@@ -1,0 +1,5 @@
+username='username@gmail.com'
+password='password'
+file = 'file.json'
+URL='https://www.linkedin.com/jobs/search/?currentJobId=3367284927&f_WT=2&geoId=92000000&keywords=thrasio&location=Worldwide&refresh=true#SALARY'
+SHEETS_NAME = 'TEST_SHEETS_01'
