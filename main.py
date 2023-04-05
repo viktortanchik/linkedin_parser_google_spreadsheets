@@ -54,79 +54,82 @@ driver.get('https://www.linkedin.com/checkpoint/lg/sign-in-another-account')
 
 def main(urls):
     for u in urls:
-        if find_url(u):
-            try:
-                driver.get(u)
-                time.sleep(5)
-                #print(f"NEW URL>>>{u}")
-                date = time.strftime('%Y/%m/%d')
-                title = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/h1'))).text
-                company = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[1]/span[1]/span[1]'))).text
-
+        try:
+            if find_url(u):
                 try:
-                    country = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[1]/span[1]/span[2]'))).text
-                except:
-                    country = ''
-                try:
-                    salary = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[2]/ul/li[1]/span/a'))).text
-                except:
-                    salary = ''
+                    driver.get(u)
+                    time.sleep(5)
+                    #print(f"NEW URL>>>{u}")
+                    date = time.strftime('%Y/%m/%d')
+                    title = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/h1'))).text
+                    company = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[1]/span[1]/span[1]'))).text
 
-                try:
-                    applicants = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[1]/span[2]/span[2]/span'))).text
-                except:
-                    applicants = ''
-                try:
-                    job_type = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[2]/ul/li[1]/span'))).text
-                except:
-                    job_type = ''
-
-                try:
-                    logo_url =WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/a/img'))).get_attribute('src')
-                    #print(f'logo_url>>{logo_url}')
-                except:
-                    logo_url = ''
-                try:
-                    #print('TEST 1')
-                    #time.sleep(999)
-                    WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[2]/footer/button'))).click()
-                    time.sleep(2)
-                    #job_desc = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[2]/article/div/div[1]/span'))).text
-                    job_desc = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[2]/article/div/div[1]/span'))).get_attribute('innerHTML')
-                    #print('TEST 1 end',job_desc)
-
-                except:
-                    try:#'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[4]/footer/button'
-                        #print('TEST 2')
-
-                        WebDriverWait(driver, timeout).until(EC.presence_of_element_located(
-                            (By.XPATH, '/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[4]/footer/button'))).click()
-                        time.sleep(2)
-
-                        job_desc = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[4]/article/div/div[1]/span'))).get_attribute('innerHTML')
-                        #print('TEST 2',job_desc)
+                    try:
+                        country = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[1]/span[1]/span[2]'))).text
                     except:
-                        job_desc = ''
-                try:#
-                    contract = driver.find_element(by=By.XPATH,
-                                                   value='/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[2]/ul/li[1]/span')
-                    contract = contract.text
-                    contract = contract[contract.find('·') + 1:]
-                except:
-                    contract = ''
+                        country = ''
+                    try:
+                        salary = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[2]/ul/li[1]/span/a'))).text
+                    except:
+                        salary = ''
+
+                    try:
+                        applicants = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[1]/span[2]/span[2]/span'))).text
+                    except:
+                        applicants = ''
+                    try:
+                        job_type = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[2]/ul/li[1]/span'))).text
+                    except:
+                        job_type = ''
+
+                    try:
+                        logo_url =WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/a/img'))).get_attribute('src')
+                        #print(f'logo_url>>{logo_url}')
+                    except:
+                        logo_url = ''
+                    try:
+                        #print('TEST 1')
+                        #time.sleep(999)
+                        WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[2]/footer/button'))).click()
+                        time.sleep(2)
+                        #job_desc = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[2]/article/div/div[1]/span'))).text
+                        job_desc = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[2]/article/div/div[1]/span'))).get_attribute('innerHTML')
+                        #print('TEST 1 end',job_desc)
+
+                    except:
+                        try:#'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[4]/footer/button'
+                            #print('TEST 2')
+
+                            WebDriverWait(driver, timeout).until(EC.presence_of_element_located(
+                                (By.XPATH, '/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[4]/footer/button'))).click()
+                            time.sleep(2)
+
+                            job_desc = WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[4]/article/div/div[1]/span'))).get_attribute('innerHTML')
+                            #print('TEST 2',job_desc)
+                        except:
+                            job_desc = ''
+                    try:#
+                        contract = driver.find_element(by=By.XPATH,
+                                                       value='/html/body/div[5]/div[3]/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div[2]/ul/li[1]/span')
+                        contract = contract.text
+                        contract = contract[contract.find('·') + 1:]
+                    except:
+                        contract = ''
 
 
-                url = u
-                index_1 = u.find('/view/') + 6
-                index_2 = u.find('/?e')
-                id = u[index_1:index_2]
-                # print(f'id--->>{id}')
-                element_id = id
+                    url = u
+                    index_1 = u.find('/view/') + 6
+                    index_2 = u.find('/?e')
+                    id = u[index_1:index_2]
+                    # print(f'id--->>{id}')
+                    element_id = id
 
-                add_new_row(date, title, company, country, salary, applicants, job_type,contract, url, logo_url, job_desc, element_id)
-            except Exception as er:
-                print(f'ERROR>> URL {u} \nERROR+++>>{er}')
-                #input('ENTER')
+                    add_new_row(date, title, company, country, salary, applicants, job_type,contract, url, logo_url, job_desc, element_id)
+                except Exception as er:
+                    print(f'ERROR>> URL {u} \nERROR+++>>{er}')
+                    #input('ENTER')
+        except:
+            pass
 
 try:
     WebDriverWait(driver, timeout).until(EC.presence_of_element_located((By.XPATH,'//*[@id="username"]'))).send_keys(username)
@@ -152,10 +155,15 @@ def find_pages(pages):
     driver.execute_script("arguments[0].scrollBy(0, 1000);", element1)
     time.sleep(1)
     elem = driver.find_elements(by=By.XPATH,value='//*[@class="artdeco-pagination__indicator artdeco-pagination__indicator--number ember-view"]')
-    #print(len(elem))
-    if int(elem[-1].text) <pages:
-        #print('ENR find urls')
-        return True
+    #elem = driver.find_elements(by=By.XPATH,value='//*[@class="scaffold-layout__list-container"]')
+    ''
+    print(len(elem))
+    try:
+        if int(elem[-1].text) <pages:
+            #print('ENR find urls')
+            return True
+    except:
+        pass
     if pages==9 and len(elem)>8:
         elem[-2].click()
         #print('PAGE ...')
@@ -173,18 +181,28 @@ def find_pages(pages):
         #elems.click()
         find_pages(pages)
     else:
-        elems = driver.find_element(by=By.XPATH,value=f'//*[@data-test-pagination-page-btn="{pages}"]')
-        #print('pages ',pages)
-        elements = driver.find_elements(by=By.XPATH,value='//*[@class="disabled ember-view job-card-container__link job-card-list__title"]')
-        for element in elements:
-            try:
-                urls.append(element.get_attribute('href'))
-            except:
-                print('ERROR')
-        #print(f'LEN===>>{len(urls)}')
-        pages = pages + 1
-        elems.click()
-        find_pages(pages)
+        try:
+            elems = driver.find_element(by=By.XPATH,value=f'//*[@data-test-pagination-page-btn="{pages}"]')
+            #print('pages ',pages)
+            elements = driver.find_elements(by=By.XPATH,value='//*[@class="disabled ember-view job-card-container__link job-card-list__title"]')
+            for element in elements:
+                try:
+                    urls.append(element.get_attribute('href'))
+                except:
+                    print('ERROR')
+            #print(f'LEN===>>{len(urls)}')
+            pages = pages + 1
+            elems.click()
+            find_pages(pages)
+        except:
+            print('1 pages')
+            elements = driver.find_elements(by=By.XPATH,value='//*[@class="disabled ember-view job-card-container__link job-card-list__title"]')
+            for element in elements:
+                try:
+                    urls.append(element.get_attribute('href'))
+                except:
+                    print('ERROR')
+
 
 time.sleep(3)
 find_pages(pages)
